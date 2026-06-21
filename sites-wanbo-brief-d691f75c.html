@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>万博体育 · 产品说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f8fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1f2a3a;
+            padding: 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* 卡片网格系统 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 2.2rem 0;
+        }
+
+        @media (min-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid .span2 {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (min-width: 920px) {
+            .grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .grid .span2 {
+                grid-column: span 2;
+            }
+            .grid .span3 {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 6px 18px rgba(0, 40, 60, 0.04), 0 2px 4px rgba(0, 30, 50, 0.02);
+            border: 1px solid rgba(0, 130, 130, 0.06);
+            transition: box-shadow 0.25s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 28px rgba(0, 80, 80, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            color: #0b4545;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card h3 i {
+            font-style: normal;
+            background: #d9f0f0;
+            color: #0a5c5c;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 40%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .card p, .card li {
+            color: #2d3f4a;
+            font-size: 0.98rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.4rem;
+        }
+
+        .card ul li {
+            padding: 0.25rem 0 0.25rem 1.4rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #0e7a7a;
+            font-weight: bold;
+        }
+
+        .hero {
+            margin: 1rem 0 0.8rem;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 580;
+            letter-spacing: -0.02em;
+            color: #0d3d3d;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #3b5a5a;
+            border-left: 4px solid #1b9b9b;
+            padding-left: 1rem;
+            margin: 0.8rem 0 1.2rem;
+            max-width: 680px;
+        }
+
+        .tagline {
+            display: inline-block;
+            background: #dff0f0;
+            padding: 0.15rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #125e5e;
+            font-weight: 470;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1.5px solid #1f8f8f;
+            background: transparent;
+            color: #125e5e;
+            padding: 0.5rem 1.6rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-outline:hover {
+            background: #1f8f8f;
+            color: white;
+            border-color: #1f8f8f;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #d1e4e4;
+            padding: 0.8rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            color: #0b4f4f;
+            display: block;
+            font-weight: 550;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item p {
+            margin: 0.1rem 0 0 0.6rem;
+            color: #2b434f;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            padding: 1.2rem 0 0.6rem;
+            border-top: 1px solid #c8dddd;
+            font-size: 0.85rem;
+            color: #3b6161;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.8rem;
+        }
+
+        .footer-note a {
+            color: #0a7070;
+            text-decoration: none;
+            border-bottom: 1px dotted #6ba8a8;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 2px solid #0a7070;
+        }
+
+        .accent-badge {
+            background: #e7f3f3;
+            padding: 0.2rem 0.9rem;
+            border-radius: 24px;
+            font-size: 0.75rem;
+            color: #0a5f5f;
+            display: inline-block;
+            margin-right: 0.3rem;
+            font-weight: 470;
+        }
+
+        .inline-link {
+            color: #0e6f6f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            font-weight: 470;
+        }
+
+        .inline-link:hover {
+            color: #033b3b;
+            text-decoration-thickness: 2px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #b3d6d6, transparent);
+            margin: 1.2rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- HERO 摘要 -->
+    <div class="hero">
+        <span class="tagline">产品说明 · 稳定入口</span>
+        <h1>万博体育 · 产品摘要</h1>
+        <div class="sub">
+            一个从产品本身出发的简明介绍：了解它的定位、核心特点，以及在实际使用中值得留意的地方。
+        </div>
+    </div>
+
+    <!-- 网格卡片：亮点 + 使用建议 + 场景 -->
+    <div class="grid">
+        <div class="card">
+            <h3><i>●</i> 产品定位</h3>
+            <p>
+                <strong>万博体育</strong> 是一个面向体育与娱乐内容的平台，围绕用户对赛事信息、互动体验的需求搭建。
+                它提供了一种结构化的浏览方式，让使用者能够相对快速地找到自己关心的内容模块。
+                从入口设计到页面组织，都倾向于保持清晰和直接。
+            </p>
+            <p style="margin-top: 0.5rem;">
+                无论是查看赛事动态、关注热门项目，还是探索社区讨论，<a href="https://sites-wanbo.com" class="inline-link">万博体育</a> 都试图在信息密度与浏览舒适度之间找到平衡。
+            </p>
+        </div>
+
+        <div class="card">
+            <h3><i>✦</i> 功能亮点</h3>
+            <ul>
+                <li>多栏目内容聚合：体育资讯、实时比分、专题整理，结构分明。</li>
+                <li>界面响应迅速：页面加载与导航切换反馈流畅，减少等待感。</li>
+                <li>移动端适配友好：在手机与平板等设备上排版自动调整，核心功能完整保留。</li>
+                <li>主题色沉稳：蓝绿色系贯穿，视觉上偏安静，不刺眼。</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3><i>▸</i> 使用建议</h3>
+            <p>
+                如果你是第一次接触，建议先浏览首页的主要导航分区，了解信息分类方式。
+                收藏或记住 <a href="https://sites-wanbo.com" class="inline-link">万博体育</a> 的网址作为固定入口，可以避免搜索时绕路。
+                日常使用中，根据个人兴趣关注对应板块即可，不必一次看完所有内容。
+            </p>
+            <p style="margin-top: 0.6rem;">
+                另外，平台内容会动态更新，定期回访可能会发现新的功能或调整。
+            </p>
+        </div>
+
+        <div class="card span2">
+            <h3><i>⛳</i> 典型使用场景</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: 0.2rem;">
+                <div style="flex: 1 1 180px;">
+                    <span class="accent-badge">🏟️ 赛前</span>
+                    <p style="margin-top: 0.3rem;">浏览赛事预告、对阵信息，快速了解当日焦点。</p>
+                </div>
+                <div style="flex: 1 1 180px;">
+                    <span class="accent-badge">📊 进行中</span>
+                    <p style="margin-top: 0.3rem;">查看实时数据、动态图文，跟进比赛节奏。</p>
+                </div>
+                <div style="flex: 1 1 180px;">
+                    <span class="accent-badge">📝 赛后</span>
+                    <p style="margin-top: 0.3rem;">回顾战报、集锦与社区讨论，延伸观赛体验。</p>
+                </div>
+            </div>
+            <p style="margin-top: 0.8rem;">
+                当然，这些只是常见用法，每个人都可以按自己的习惯使用。
+            </p>
+        </div>
+
+        <div class="card span3">
+            <h3><i>❖</i> 可信但克制的访问说明</h3>
+            <p>
+                互联网上信息繁杂，一个稳定、直接的入口能减少很多不必要的麻烦。
+                <strong>万博体育</strong> 作为一项在线服务，其内容与功能均由平台方提供。
+                我们建议用户通过官方渠道访问，同时保持适当的辨别意识：
+            </p>
+            <ul style="margin-top: 0.4rem;">
+                <li>确保使用最新版浏览器访问，以获得更好的兼容性与安全性。</li>
+                <li>对任何要求提供个人敏感信息的行为保持警惕；平台官方通常不会通过非正式渠道索取密码。</li>
+                <li>如果遇到访问异常或页面显示异常，可以先检查网络环境，或稍后重试。</li>
+                <li>本说明仅基于产品常态进行描述，不构成任何承诺或保证。</li>
+            </ul>
+            <p style="margin-top: 0.6rem; font-style: italic; color: #2e5c5c;">
+                一句话：选一个靠谱的入口，剩下的交给自己的判断。
+            </p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div style="margin: 0.4rem 0 1.8rem;">
+        <h2 style="font-size: 1.4rem; font-weight: 520; color: #104b4b; margin-bottom: 0.2rem;">常见问题摘要</h2>
+        <div style="background: white; border-radius: 24px; padding: 1.2rem 1.6rem; border: 1px solid rgba(0,130,130,0.08);">
+            <div class="faq-item">
+                <strong>Q: 万博体育 是一个 app 还是网站？</strong>
+                <p>A: 目前主要以网页形式提供服务，通过浏览器即可访问，无需安装额外软件。移动端浏览体验经过专门优化。</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: 是否需要注册才能浏览？</strong>
+                <p>A: 大部分内容可以直接浏览，部分互动或个性化功能可能涉及账户体系。具体以页面实际提示为准。</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: 如何确保我访问的是正确站点？</strong>
+                <p>A: 直接输入 <a href="https://sites-wanbo.com" class="inline-link">万博体育</a> 的完整域名，或从可信的书签进入。避免通过不明链接跳转。</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: 内容更新频率如何？</strong>
+                <p>A: 赛事相关内容通常实时或准实时更新，专题与资讯类内容按日常节奏维护。具体时效性以页面标注为准。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 一个小小的叙述段 -->
+    <div style="background: #ebf4f4; border-radius: 20px; padding: 1.2rem 1.8rem; margin: 0.2rem 0 1rem;">
+        <p style="color: #174d4d;">
+            写这份说明的初衷，是觉得一个产品如果能被简单、坦诚地介绍给新朋友，本身就是一件好事。
+            对于 <strong>万博体育</strong>，我们不想堆砌夸张的词汇，只希望你在需要的时候，能通过这个页面了解它的大致模样，
+            然后决定是否值得花一点时间去看看。
+        </p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <span>产品说明页面 · 内容仅供参考</span>
+        <span>
+            <a href="https://sites-wanbo.com">万博体育</a> — 稳定入口
+        </span>
+    </div>
+
+</div>
+</body>
+</html>
